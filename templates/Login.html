@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'Login.css' %}"/>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <img class='image' src="{% static 'ciscowhite.png'%}" alt=""/>
+    <h1 class='title'> Lab Equipment Booking Application </h1>    
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form class='login-box' action='/' name="myForm" onsubmit="return validateForm()" method="post">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <h5>{{message}}</h5>
+        <div class='textbox'>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type='text' name='username' placeholder='Employee ID' autoFocus='autofocus' required/>
+        </div>
+        <div class="textbox">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type='password' name='password' placeholder='Password' required/>
+        </div><br/>
+        <div class='role'>
+            <select name='role' required>
+                <!-- <option disabled selected>Role </option> -->
+                <option>User </option>
+                <option>Admin </option>
+            </select>
+        </div>
+        <button class='btn'> Login </button>
+        <div class='signup'>
+            <a class='link' href="ForgotPassword">Forgot Password?</a>
+        </div>
+        <div class='signup'>
+            <label>New user?</label>
+            <a class='link' href='Signup'>  Sign Up</a>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href='{% static "ForgotPass.css" %}'/>
+    
+    <script>
+        
+    </script>
+</head>
+<body>
+    <img  class='image' src="{% static 'ciscowhite.png'%}" alt=""/>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+           <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form class='login-box' name="myForm" action="ForgotPassword" onsubmit="return validateForm()" method="post">
+        {% csrf_token %}
+        <h1>Forgot Password</h1>
+        <h5>{{message}}</h5>
+        <div class='textbox'>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type='email' name='email_id' placeholder='Email ID' autoFocus='autofocus' required/>
+        </div>
+        <div class="textbox">
+            <i class="fa fa-key" aria-hidden="true"></i>
+            <input type='password' name='s_code' placeholder='Secret Code' pattern="[0-9a-z]{5}" title="Must satisfy the below condition" required/>    
+        </div>
+        <label class='secretLabel'>[Last 2 digits of employee ID + first 3 letters (smaller case) of month of joining] </label>
+        <div class="textbox">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type='password' name='n_password' placeholder='New Password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+        </div>
+        <div class="textbox">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type='password' name='c_password' placeholder='Confirm Password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Re-enter the password" required/>
+        </div>
+        <div>
+            <input type="submit" class='btn' value="Reset Password"/>
+        </div>
+        <div class='signup'>
+            <a class='link' href='/'>Login</a>
+        </div>
+    </form>
+</body>
+</html>
